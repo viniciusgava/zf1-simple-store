@@ -1,0 +1,10 @@
+{
+    "require" : {
+        "zendframework/zendframework1" : "1.12.*"
+    },
+    "autoload" : {
+        "psr-0" : {
+            "ZendX" : "vendor/zendframework/zendframework1/extras/library"
+        }
+    }
+}
