@@ -4,7 +4,8 @@
     },
     "autoload" : {
         "psr-0" : {
-            "ZendX" : "vendor/zendframework/zendframework1/extras/library"
+            "ZendX" : "vendor/zendframework/zendframework1/extras/library",
+            "Store_": "library/"
         }
     }
 }
