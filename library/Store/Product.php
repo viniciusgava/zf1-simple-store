@@ -44,6 +44,19 @@ class Store_Product {
         return $this->active;
     }
 
+    public function getImageURL() {
+        return $this->imageURL;
+    }
+    
+    public function getProductId() {
+        return $this->productId;
+    }
+
+    public function getCategories() {
+        return $this->categories;
+    }
+
+    
     public function setName($name) {
         if (strlen($name) > 3) {
             $this->name = $name;
@@ -104,6 +117,10 @@ class Store_Product {
             return true;
         }
         return false;
+    }
+
+    public function hasImage() {
+        return ($this->getImageURL() != null);
     }
 
 }

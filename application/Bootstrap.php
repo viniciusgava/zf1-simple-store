@@ -7,6 +7,9 @@ $objFrontController = Zend_Controller_Front::getInstance();
 $objFrontController->throwExceptions(true);
 $objFrontController->setControllerDirectory(realpath(APPLICATION_PATH . '/controllers/'));
 
+$routeSearchCategory = new Zend_Controller_Router_Route('search/:slugcategory', array( 'controller'=>'search', 'action'=>'index'),array('slugcategory'=>'[_-a-zA-Z0-9]+'));
+$objFrontController->getRouter()->addRoute('route_search_category', $routeSearchCategory);
+
 $objConfig = new Zend_Config_Ini(APPLICATION_PATH . "/configs/application.ini", APPLICATION_ENV);
 
 Zend_Registry::set('objConfig', $objConfig);

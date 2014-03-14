@@ -1,0 +1,51 @@
+<h1><?= $this->title ?></h1>
+<?php if (count($this->cart->getItens()) > 0) { ?>
+    <table class="cart-table" border="1">
+        <thead>
+            <tr>
+                <td>&nbsp;</td>
+                <td>Name</td>
+                <td>Qty</td>
+                <td>Price</td>
+                <td>SubTotal</td>
+                <td>Remover</td>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($this->cart->getItens() as $cartItem) { ?>
+                <tr>
+                    <td>
+                        <img src="<?= $this->baseUrl() . '/images/products/' . $cartItem->getProduct()->getImageURL() ?>" alt="<?= $cartItem->getProduct()->getName() ?>" title="<?= $cartItem->getProduct()->getName() ?>"/>
+                    </td>
+                    <td>
+                        <?php echo $cartItem->getProduct()->getName(); ?>
+                    </td>
+                    <td>
+                        <a href="<?= $this->baseUrl() ?>/cart/update-quantity/id/<?= $cartItem->getProduct()->getProductId(); ?>/qty/<?= $cartItem->getQuantity() - 1; ?>">-</a>
+                        <?php echo $cartItem->getQuantity(); ?>
+                        <a href="<?= $this->baseUrl() ?>/cart/update-quantity/id/<?= $cartItem->getProduct()->getProductId(); ?>/qty/<?= $cartItem->getQuantity() + 1; ?>">+</a>
+                    </td>
+                    <td>
+                        <?php echo $this->formatPrice($cartItem->getProduct()->getPrice()); ?>
+                    </td>
+                    <td>
+                        <?php echo $this->formatPrice($cartItem->getSubTotal()); ?>
+                    </td>
+                    <td>
+                        <a href="<?= $this->baseUrl() ?>/cart/remove/id/<?= $cartItem->getProduct()->getProductId(); ?>">X</a>
+                    </td>
+                </tr>
+            <?php } ?>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4">Total</td>
+                <td colspan="2"><?php echo $this->formatPrice($this->cart->getTotal()); ?></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    
+
+    <?php
+}?>

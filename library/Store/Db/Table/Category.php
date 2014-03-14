@@ -18,4 +18,11 @@ class Store_Db_Table_Category extends Store_Db_Table_Abstract {
         return $return;
     }
 
+    public function getCategoryBySlug($slug) {
+        $row = $this->fetchRow($this->select()->where("slug = ?", $slug));
+        if ($row != null)
+            return new Store_Category($row->name, $row->slug, ($row->active == '1'), $row->category_id);
+        return null;
+    }
+
 }

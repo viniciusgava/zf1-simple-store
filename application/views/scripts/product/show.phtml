@@ -1,0 +1,15 @@
+<h1><?= $this->title ?></h1>
+<div class="productshow">    
+    <?php if ($this->result->hasImage()) { ?>
+        <img src="<?= $this->baseUrl() . '/images/products/' . $this->result->getImageURL() ?>" alt="<?= $this->result->getName() ?>" title="<?= $this->result->getName() ?>"/>
+    <?php } ?>
+    <span class="details">
+        <span class="price"><?= $this->formatPrice($this->result->getPrice()); ?></span>
+        <a href="<?=$this->baseUrl()?>/cart/add/id/<?=$this->result->getProductId();?>" class="buy">Buy</a>
+    </span>
+
+    <h4>Description</h4>
+    <div class="description">        
+        <?= nl2br($this->result->getDescription()); ?>
+    </div>
+</div>

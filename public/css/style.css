@@ -1,0 +1,102 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.header, .content, .footer{
+    overflow: hidden;
+    height: auto;
+}
+
+.header .search{
+    padding: 0 15px;
+}
+
+.footer{
+    padding: 0 15px;    
+}
+
+.menu,.search-results, .categories{
+    list-style: none;
+    padding-left: 25px;
+    
+}
+h1{
+    padding: 10px 15px;
+}
+h4{
+    padding: 10px 15px;
+}
+
+.product{
+    height: 150px;
+    width: 400px;
+    padding-bottom: 5px;
+}
+
+.product img{
+    width: 150px;
+    height: 150px;
+    float: left;    
+}
+
+.product .details{
+    display: block;
+    height: 150px;
+    width: 240px;
+    float: left;
+    padding-left: 10px;
+}
+
+.product .details .name{
+    float: left;    
+}
+.product .details .price{
+    float: left;
+    clear: left;
+}
+
+
+.productshow{
+    height: auto;
+    width: 800px;
+    padding-bottom: 5px;
+}
+
+.productshow img{
+    width: 250px;
+    height: 250px;
+    float: left;    
+}
+
+.productshow .details{
+    display: block;
+    height: 250px;
+    width: 240px;
+    float: left;
+    padding-left: 10px;
+}
+
+.productshow .details .price{
+    float: left;
+}
+
+.productshow .details .buy{
+    float: left;
+    clear: left;
+    color:red;
+    font-weight: bold;
+}
+
+.productshow h4{
+    float: left;
+    clear: left;
+}
+
+.productshow .description{
+    float: left;
+    clear: left;
+    overflow: hidden;
+    height: auto;
+    padding: 10px 15px;
+}

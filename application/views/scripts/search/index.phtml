@@ -1,0 +1,12 @@
+<h4><?=$this->title?></h4>
+<?php if (count($this->result) > 0) { ?>
+    <ul class="search-results">
+        <?php foreach ($this->result as $result) { ?>
+            <li class="search-item-result">
+                <?php $this->renderProduct($result);?>
+            </li>
+
+        <?php } ?>
+
+    </ul>
+<?php } ?>

@@ -8,10 +8,16 @@ class Store_Controller_Action extends Zend_Controller_Action {
     }
 
     public function init() {
-        
+                
     }
 
     public function preDispatch() {
+        
+        $this->view->setEncoding('UTF-8');
+        
+        //inclui diretorio de helpers
+        $this->view->addHelperPath(realpath(ROOT_PATH .'/library/Store/View/Helper/'), 'Store_View_Helper');
+        
         $objTblCategory = new Store_Db_Table_Category();
         $this->_helper->layout()->categories = $objTblCategory->getAllCategories();
 
@@ -20,7 +26,7 @@ class Store_Controller_Action extends Zend_Controller_Action {
     }
 
     protected function setTitle($title) {
-        $this->_helper->layout()->title = $title;
+        $this->view->title = $this->_helper->layout()->title = $title;
     }
 
 }
