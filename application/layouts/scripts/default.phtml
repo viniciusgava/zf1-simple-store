@@ -1,13 +1,64 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title><?php echo $this->layout()->title; ?> - Simple Store</title>
+        <title><?php echo $this->layout()->title; ?> - <?php echo $this->layout()->siteName; ?></title>
 
         <meta http-equiv="Content-Language" content="pt-br" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="keywords" content="" />
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     </head>
     <body>
-        <?php echo $this->layout()->content; ?>
+        <div class="external">
+            <div class="header">
+                <h1 class="title">
+                    <a href="<?= $this->baseUrl(); ?>/"><?php echo $this->layout()->siteName; ?></a>
+                </h1>
+                <h4>Categories</h4>
+                <ul class="categories">
+
+                    <?php foreach ($this->layout()->categories as $category) { ?>
+                        <li>
+                            <a href="<?= $this->baseUrl() ?>/search/<?= $category->getSlug() ?>/">
+                                <?= $category->getName(); ?>
+                            </a>
+                        </li>
+                    <?php } ?>
+                </ul>
+                <h4>Search</h4>
+                <div class="search">
+                    <form action="<?= $this->baseUrl() ?>/search/" id="formsearch" method="get">
+                        <input type="text" placeholder="Search" name="q" value="" />
+                        <select id="categoryfield">
+                            <optgroup label="Categories">
+                                <option value="<?= $this->baseUrl() ?>/search/">All</option>
+                            <?php foreach ($this->layout()->categories as $category) { ?>
+                                <option value="<?= $this->baseUrl() ?>/search/<?= $category->getSlug() ?>/">
+                                    <?= $category->getName(); ?>
+                                </option>
+                            <?php } ?>
+                            </optgroup>
+                        </select>
+                        <button type="submit">Go</button>
+                        <script type="text/javascript">
+                            $(function(){
+                                $("#formsearch #categoryfield").change(function(){
+                                    $("#formsearch").attr("action",$(this).val());
+                                });                                
+                            });                            
+                        </script>
+                    </form>
+                </div>
+
+            </div>
+            <div class="content">
+                <?php echo $this->layout()->content; ?>
+            </div>
+            <div class="footer">
+                <br />
+                <?=date("Y")?> - <?php echo $this->layout()->siteName; ?>
+            </div>
+        </div>
+
     </body>
 </html>
