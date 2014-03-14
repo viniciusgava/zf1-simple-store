@@ -9,4 +9,4 @@ nbproject
 composer.lock
 vendor
 nbproject/
-public/images/products
+public/images/products/*

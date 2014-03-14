@@ -8,6 +8,8 @@ USE `simplestore` ;
 -- -----------------------------------------------------
 -- Table `simplestore`.`category`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `simplestore`.`category` ;
+
 CREATE TABLE IF NOT EXISTS `simplestore`.`category` (
   `category_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NOT NULL,
@@ -20,6 +22,8 @@ CREATE TABLE IF NOT EXISTS `simplestore`.`category` (
 -- -----------------------------------------------------
 -- Table `simplestore`.`product`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `simplestore`.`product` ;
+
 CREATE TABLE IF NOT EXISTS `simplestore`.`product` (
   `product_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
@@ -34,17 +38,19 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `simplestore`.`category_product`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `simplestore`.`category_product` ;
+
 CREATE TABLE IF NOT EXISTS `simplestore`.`category_product` (
   `category_id` INT UNSIGNED NOT NULL,
   `product_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`category_id`, `product_id`),
   INDEX `product_id_idx` (`product_id` ASC),
-  CONSTRAINT `category_id`
+  CONSTRAINT `category_product_category_id_fk`
     FOREIGN KEY (`category_id`)
     REFERENCES `simplestore`.`category` (`category_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `product_id`
+  CONSTRAINT `category_product_product_id_fk`
     FOREIGN KEY (`product_id`)
     REFERENCES `simplestore`.`product` (`product_id`)
     ON DELETE NO ACTION
@@ -55,6 +61,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `simplestore`.`order`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `simplestore`.`order` ;
+
 CREATE TABLE IF NOT EXISTS `simplestore`.`order` (
   `order_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(50) NOT NULL,
@@ -75,6 +83,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `simplestore`.`order_item`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `simplestore`.`order_item` ;
+
 CREATE TABLE IF NOT EXISTS `simplestore`.`order_item` (
   `order_item_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `order_id` INT UNSIGNED NOT NULL,
@@ -82,7 +92,19 @@ CREATE TABLE IF NOT EXISTS `simplestore`.`order_item` (
   `name` VARCHAR(255) NOT NULL,
   `price` FLOAT UNSIGNED NOT NULL,
   `quantity` SMALLINT UNSIGNED NOT NULL,
-  PRIMARY KEY (`order_item_id`))
+  PRIMARY KEY (`order_item_id`),
+  INDEX `order_id_idx` (`order_id` ASC),
+  INDEX `product_id_idx` (`product_id` ASC),
+  CONSTRAINT `order_item_order_id_fk`
+    FOREIGN KEY (`order_id`)
+    REFERENCES `simplestore`.`order` (`order_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `order_item_product_id_fk`
+    FOREIGN KEY (`product_id`)
+    REFERENCES `simplestore`.`product` (`product_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
