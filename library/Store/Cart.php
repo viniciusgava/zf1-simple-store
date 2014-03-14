@@ -57,12 +57,20 @@ class Store_Cart {
         return $this->cartItens;
     }
 
+    /**
+     * Price total of order
+     * @return float
+     */
     public function getTotal() {
         $total = 0;
         foreach ($this->cartItens as $carItem) {
             $total += $carItem->getSubTotal();
         }
         return $total;
+    }
+    
+    public function clearCar(){
+        $this->cartItens = array();
     }
 
 }
