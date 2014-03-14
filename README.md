@@ -28,4 +28,10 @@ Remember of create a virtualhost or use this command in project directory to run
     
 Information for tests
 ---------------------
-coming soon!
+For test project, you can use information for tests.
+
+Go to "docs" directory and execute "information4tests.sql" in your mysql.
+
+Go to "docs/imagestests" directory and copy all images to "/public/images/products"
+
+
